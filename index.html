@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施美玉名香祖舖｜SHI MEI YU - 居家空間新香氛</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+TC:wght@300;500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS 變數定義：打造高級感大地木質調與留白視覺 */
+        :root {
+            --bg-color: #FBFBFA;
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            --accent-wood: #3E2723;
+            --accent-sand: #D7CCC8;
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Noto Serif TC', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            letter-spacing: 0.05em;
+        }
+
+        /* 導覽列：極簡、半透明懸浮高奢感 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(251, 251, 250, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            font-size: 0.9rem;
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            display: block;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 5px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--text-main);
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        /* 頁面切換核心架構 */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 140px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 共用精品排版組件 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', 'Noto Serif TC', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title span {
+            display: block;
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* ==================== 1. 首頁 (Home) 樣式 ==================== */
+        .hero {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(215,204,200,0.2) 0%, rgba(251,251,250,1) 70%);
+        }
+
+        .hero-content h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            letter-spacing: 0.15em;
+        }
+
+        .btn-luxury {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            background: transparent;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-luxury:hover {
+            background: var(--text-main);
+            color: #FFF;
+        }
+
+        /* 雙軌非對稱敘事區塊 */
+        .split-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin: 100px 0;
+        }
+
+        .split-text h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .split-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background-color: var(--accent-sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-wood);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+        }
+
+        /* 煙霧微動畫模擬 */
+        .split-image-placeholder::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+            animation: smokeMove 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes smokeMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(10deg); }
+        }
+
+        /* ==================== 2. 百年香藝 (Craft) 樣式 ==================== */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background-color: var(--accent-sand);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-date {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-wood);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .cert-section {
+            background-color: #F4F3F0;
+            padding: 60px;
+            text-align: center;
+            margin-top: 80px;
+            border-radius: 4px;
+        }
+
+        .cert-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .cert-badge {
+            border: 1px solid var(--accent-sand);
+            padding: 20px 40px;
+            background: #FFF;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* ==================== 3. 時髦香材 (Products) 樣式 ==================== */
+        .product-filter {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Noto Serif TC', serif;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: #FFF;
+            border: 1px solid rgba(0,0,0,0.02);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+        }
+
+        .product-img-holder {
+            width: 100%;
+            height: 250px;
+            background-color: #F5F5F5;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            color: #AAA;
+        }
+
+        .product-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-notes {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--accent-wood);
+            margin-bottom: 20px;
+        }
+
+        /* ==================== 4. 居家留白 (Scenarios) 樣式 ==================== */
+        .editorial-journal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .journal-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .journal-img {
+            height: 400px;
+            background-color: var(--accent-sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            color: var(--accent-wood);
+        }
+
+        .journal-meta {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+        }
+
+        .journal-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ==================== 5. 尋香祖舖 (Store) 樣式 ==================== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 50px;
+        }
+
+        .store-info h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .info-block {
+            margin-bottom: 30px;
+        }
+
+        .info-block label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .info-block p {
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: #FFF;
+            border: 1px solid rgba(0,0,0,0.1);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--text-main);
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #1A1A1A;
+            color: #FFF;
+            padding: 80px 10%;
+            margin-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .footer-link-group h5 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            color: #AAA;
+        }
+
+        .footer-link-group ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link-group a {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-link-group a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        /* 行動裝置響應式優化 */
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { gap: 15px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .split-feature, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
+            .timeline-item:nth-child(even) { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a class="logo" onclick="switchPage('home')">
+            SHI MEI YU
+            <span>施美玉名香祖舖</span>
+        </a>
+        <nav>
+            <a onclick="switchPage('home')" id="nav-home" class="active">首頁</a>
+            <a onclick="switchPage('craft')" id="nav-craft">百年香藝</a>
+            <a onclick="switchPage('products')" id="nav-products">時髦香材</a>
+            <a onclick="switchPage('scenarios')" id="nav-scenarios">居家留白</a>
+            <a onclick="switchPage('store')" id="nav-store">尋香祖舖</a>
+        </nav>
+    </header>
+
+    <div id="page-home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>讓百年古法<br>成為你的居家新香氛</h1>
+                <p>不只是祭祀，更是心靈的深呼吸</p>
+                <button class="btn-luxury" onclick="switchPage('products')">探索居家生活系列</button>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="split-feature">
+                <div class="split-text">
+                    <h2>忙碌後的留白<br>從點燃一抹清香開始</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">創立於 1744 年的「施美玉名香祖舖」，傳承八代純粹。我們用現代設計語彙重新定義香氛，讓傳統香材變身為時髦的居家配件，融入每個人獨特的生活儀式。</p>
+                    <button class="btn-luxury" onclick="switchPage('craft')">探尋工藝故事</button>
+                </div>
+                <div class="split-image-placeholder">
+                    [ LIVING SPACE & INCENSE SMOKE ]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-craft" class="page">
+        <div class="container">
+            <h2 class="section-title">東方香道實驗室<span>八代傳承的純粹溫度</span></h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">1744</span>
+                    <p>創立於台灣鹿港，奠定台灣最悠久製香品牌的歷史基石。</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">古法工藝</span>
+                    <p>堅持天然原料、古法手工，嚴選高品質沉香、檀香與中藥材調配。</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">全新思維</span>
+                    <p>全面轉型實虛並行，打破傳統香舖「舊、暗、亂」的框架，進駐電商旗艦美學平台。</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2026</span>
+                    <p>將天然無添加香品重塑為「居家空間新香氛」，鎖定身心靈療癒新世代。</p>
+                </div>
+            </div>
+
+            <div class="cert-section">
+                <h3 style="font-family: 'Noto Serif TC', serif; margin-bottom: 15px;">安心至上，天然無毒保證</h3>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">施美玉全系列香品均嚴格控管，拒絕化學添加物，給予現代居家最純淨的感官享受。</p>
+                <div class="cert-grid">
+                    <div class="cert-badge">SGS 檢驗合格認證</div>
+                    <div class="cert-badge">國家專利「本色香」</div>
+                    <div class="cert-badge">100% 天然植物中藥材</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-products" class="page">
+        <div class="container">
+            <h2 class="section-title">時髦居家香材<span>Boutique Incense Collection</span></h2>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img-holder">[ PREMIUM AGARWOOD ]</div>
+                    <h3 class="product-title">頂級惠安水沉香</h3>
+                    <p class="product-notes">前調：甘甜清涼｜中調：蜜香蜜韻｜後調：溫潤木質</p>
+                    <p class="product-price">NT$ 1,200 up</p>
+                    <button class="btn-luxury" style="padding: 10px 20px; font-size: 0.8rem;">了解詳情</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-holder">[ MODERN LINE INCENSE ]</div>
+                    <h3 class="product-title">老山檀香生活臥香</h3>
+                    <p class="product-notes">精緻盒裝，適合現代居家書房、辦公空間安神留白。</p>
+                    <p class="product-price">NT$ 680</p>
+                    <button class="btn-luxury" style="padding: 10px 20px; font-size: 0.8rem;">了解詳情</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-holder">[ COIL INCENSE ]</div>
+                    <h3 class="product-title">微煙環保小盤香</h3>
+                    <p class="product-notes">獨家微煙技術，淨化室內空間磁場，瑜珈冥想必備。</p>
+                    <p class="product-price">NT$ 550</p>
+                    <button class="btn-luxury" style="padding: 10px 20px; font-size: 0.8rem;">了解詳情</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-scenarios" class="page">
+        <div class="container">
+            <h2 class="section-title">日常留白美學<span>Sensory Lifestyle Journal</span></h2>
+            
+            <div class="editorial-journal">
+                <div class="journal-card">
+                    <div class="journal-img">[ YOGA & MEDITATION ]</div>
+                    <span class="journal-meta">SCENARIO 01 / 清晨的冥想</span>
+                    <h3 class="journal-title">在第一縷晨光中，點燃微煙環保盤香，淨化一整天的思緒。</h3>
+                </div>
+                <div class="journal-card">
+                    <div class="journal-img">[ STUDY & RETREAT ]</div>
+                    <span class="journal-meta">SCENARIO 02 / 深夜的書房</span>
+                    <h3 class="journal-title">木質甘甜的老山檀香臥香，伴隨紙張的溫度，享受個人閱讀的寂靜。</h3>
+                </div>
+                <div class="journal-card">
+                    <div class="journal-img">[ MINIMALIST HOME ]</div>
+                    <span class="journal-meta">SCENARIO 03 / 空間沙龍</span>
+                    <h3 class="journal-title">擺脫神明廳的框架。極簡金屬香座與百年古法手工香，撞擊出新摩登品味。</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-store" class="page">
+        <div class="container">
+            <h2 class="section-title">尋香祖舖<span>Visit Our Space</span></h2>
+            
+            <div class="contact-wrapper">
+                <div class="store-info">
+                    <h3>彰化鹿港祖舖精品門市</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 40px;">歡迎蒞臨我們傳承二百八十年的實體空間，親自感受天然香材的溫潤與呼吸。</p>
+                    
+                    <div class="info-block">
+                        <label>地址 ADDRESS</label>
+                        <p>彰化縣鹿港鎮中山路219號</p>
+                    </div>
+                    <div class="info-block">
+                        <label>電話 TEL</label>
+                        <p>04-7772029</p>
+                    </div>
+                    <div class="info-block">
+                        <label>營業時間 HOURS</label>
+                        <p>週一至週日 09:00 - 21:00 (假日照常營業)</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-family: 'Noto Serif TC', serif; margin-bottom: 20px;">聯絡我們</h3>
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('感謝您的訊息，我們將儘速與您聯繫！');">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名 Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="電子郵件 Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="訊息內容 Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-luxury">傳送訊息 SEND</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">
+            <h4>SHI MEI YU</h4>
+            <p style="opacity: 0.6; font-size: 0.85rem;">創立於 1744 年 · 傳承八代的居家空間新香氛</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-link-group">
+                <h5>線上通路</h5>
+                <ul>
+                    <li><a href="https://pinkoi.com" target="_blank">Pinkoi 品牌旗艦店</a></li>
+                    <li><a href="https://shopee.tw" target="_blank">蝦皮官方商城</a></li>
+                </ul>
+            </div>
+            <div class="footer-link-group">
+                <h5>社群媒體</h5>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 施美玉名香祖舖 SHI MEI YU. All Rights Reserved. 網際網路期中專案作品
+        </div>
+    </footer>
+
+    <script>
+        function switchPage(pageId) {
+            // 隱藏所有頁面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 取消所有導覽列連結的 active 狀態
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // 顯示目標頁面
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 活化對應的導覽連結
+            const targetNavLink = document.getElementById('nav-' + pageId);
+            if (targetNavLink) {
+                targetNavLink.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
